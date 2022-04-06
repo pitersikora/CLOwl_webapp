@@ -12,9 +12,23 @@
             <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-box mr-2"></i>Categories</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" asp-area="Admin" asp-controller="MediaType" asp-action="Index"><i class="fas fa-file-video mr-2"></i>Media Types</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-area="Admin" asp-controller="CreatorAccounts" asp-action="Index"><i class="fa-solid fa-person mr-2"></i>Creator Accounts</a>
         </div>
     </li>
 }
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "creator"))
+{
+    <li class="nav-item dropdown show">
+        <a class="dropdown-toggle nav-link text-dark" href="#" data-toggle="dropdown">Create/Edit Content</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-box mr-2"></i>Categories</a>
+            <div class="dropdown-divider"></div>
+        </div>
+    </li>
+}
+
 else if (!SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
