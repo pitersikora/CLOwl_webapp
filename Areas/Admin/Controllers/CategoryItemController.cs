@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ClowlWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Creator")]
     public class CategoryItemController : Controller
     {
         private readonly ApplicationDbContext _context;

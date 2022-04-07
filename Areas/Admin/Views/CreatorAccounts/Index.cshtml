@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Creator Accounts";
+}
+
+<h1>Creator Accounts</h1>
+<div id="alert_placeholder_result"></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User Name
+            </th>
+            <th>
+                Creator Account Type
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.UserList)
+        {
+            <tr>
+                <td>
+                    <div id="userName@(ViewBag.UserList.IndexOf(item))">@item.UserName</div>
+                </td>
+                <td>
+                    <input id="checkbox@(ViewBag.UserList.IndexOf(item))" type="checkbox" class="CheckboxCreatorAccount" checked=@(item.Role == "CREATOR")>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_CheckboxScriptsPartial");
+
+    }
+
+}

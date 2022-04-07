@@ -14,6 +14,18 @@ function PresentClosableBootstrapAlert(placeHolderElemId, alertType, alertHeadin
 
 }
 
+function PresentBootstrapAlert(placeHolderElemId, alertType, alertHeading, alertMessage) {
+
+    if (alertType == "") {
+        alertType = "info";
+    }
+    var alertHtml = '<div class="alert alert-' + alertType + ' role="alert">' +
+        '<strong>' + alertHeading + '</strong><br>' + alertMessage + '</div>';
+
+    $(placeHolderElemId).html(alertHtml);
+
+}
+
 function CloseAlert(placeHolderElemId) {
     $(placeHolderElemId).html("");
 }
