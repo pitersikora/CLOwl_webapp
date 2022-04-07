@@ -9,7 +9,7 @@ namespace ClowlWebApp.Models
     public class UserRole
     {
         public string UserName { set; get; }
-        public bool Role { set; get; }
+        public string Role { set; get; }
 
     }
 }
