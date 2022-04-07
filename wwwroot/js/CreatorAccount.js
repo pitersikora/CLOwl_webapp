@@ -4,8 +4,6 @@ $(function () {
 
         var email = document.getElementById($(this).attr('id').replace("checkbox", "userName")).innerText;
         var role = ($(this).is(":checked")) ? "CREATOR" : null
-        console.log(email);
-        console.log(role)
 
         var userInput = {
             UserName: email,
