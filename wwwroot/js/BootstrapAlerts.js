@@ -19,11 +19,16 @@ function PresentBootstrapAlert(placeHolderElemId, alertType, alertHeading, alert
     if (alertType == "") {
         alertType = "info";
     }
-    var alertHtml = '<div class="alert alert-' + alertType + ' role="alert">' +
+    var alertHtml = '<div class="alert alert-' + alertType + ' fade show" role="alert">' +
         '<strong>' + alertHeading + '</strong><br>' + alertMessage + '</div>';
 
     $(placeHolderElemId).html(alertHtml);
 
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 2000);
 }
 
 function CloseAlert(placeHolderElemId) {
