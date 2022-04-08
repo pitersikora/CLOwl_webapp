@@ -14,7 +14,7 @@ function PresentClosableBootstrapAlert(placeHolderElemId, alertType, alertHeadin
 
 }
 
-function PresentBootstrapAlert(placeHolderElemId, alertType, alertHeading, alertMessage) {
+function PresentAutoCloseBootstrapAlert(placeHolderElemId, alertType, alertHeading, alertMessage) {
 
     if (alertType == "") {
         alertType = "info";
@@ -29,6 +29,7 @@ function PresentBootstrapAlert(placeHolderElemId, alertType, alertHeading, alert
             $(this).remove();
         });
     }, 2000);
+
 }
 
 function CloseAlert(placeHolderElemId) {
