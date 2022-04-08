@@ -57,6 +57,22 @@ $(function () {
         });
     });
 
+    $("#UserRegistrationModal input[name = 'FirstName'], #UserRegistrationModal input[name = 'LastName']").blur(function () {
+
+        var pass = $("#UserRegistrationModal input[name = 'Password']").val();
+        var name = $("#UserRegistrationModal input[name = 'FirstName']").val();
+        var surname = $("#UserRegistrationModal input[name = 'LastName']").val();
+
+        if (pass.toLowerCase().includes(name.toLowerCase()) || pass.toLowerCase().includes(surname.toLowerCase()) ) {
+
+            PresentClosableBootstrapAlert("#alert_placeholder_register", "warning", "Invalid Password", "Password cannot contain your name or surname.");
+
+        }
+        else {
+            CloseAlert("#alert_placeholder_register");
+        }
+    });
+
 
     var registerUserButton = $("#UserRegistrationModal button[name = 'register']").click(onUserRegisterClick);
 
