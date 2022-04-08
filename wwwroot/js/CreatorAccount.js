@@ -28,8 +28,14 @@ $(function () {
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+
+                PresentAutoCloseBootstrapAlert("#alert_placeholder_result", "danger", "Error!", errorText);
+
                 checkbox_obj.checked = !checkbox_obj.checked
+
+                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+
             }
 
         });
