@@ -1,0 +1,3 @@
+rules:
+    # Override default settings
+    "no-unused-vars": ["warning", { "vars": "local", "args": "after-used", "ignoreRestSiblings": false }]
