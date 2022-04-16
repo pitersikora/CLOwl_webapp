@@ -35,7 +35,6 @@ jobs:
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib|.json).*
           VALIDATE_JAVASCRIPT_STANDARD: false
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
