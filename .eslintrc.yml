@@ -4,3 +4,16 @@ env:
   jquery: true
 extends:
   - eslint:recommended
+rules:
+  - no-undef: 1
+  - camelcase: 2
+  - eqeqeq: 2
+  - brace-style: 2
+  - block-spacing: 2
+  - comma-spacing: 2
+  - comma-style: 2
+  - indent: [2, 2]
+  - no-multiple-empty-lines: 2
+  - no-trailing-spaces: 2
+  - space-before-blocks: 2
+  - space-before-function-paren: 2
