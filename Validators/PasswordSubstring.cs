@@ -11,7 +11,7 @@ namespace ClowlWebApp.Validators
 {
     public class PasswordSubstring : ValidationAttribute
     {
-
+   
         public string GetErrorMessage() => $"Password cannot contain your name or surname.";
 
         protected override ValidationResult IsValid(object value,
