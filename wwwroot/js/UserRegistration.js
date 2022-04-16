@@ -4,7 +4,7 @@ $(function () {
         $("#UserRegistrationModal input[name='CategoryId']").val('0');
     });
 
-    $('.RegisterLink').click(function () {
+    $('.register-link').click(function () {
 
         $("#UserRegistrationModal input[name='CategoryId']").val($(this).attr('data-categoryId'));
 
