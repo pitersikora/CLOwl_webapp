@@ -1,3 +1,4 @@
 rules:
     # Override default settings
-    "no-unused-vars": ["warning", { "vars": "local", "args": "after-used", "ignoreRestSiblings": false }]
+    "no-unused-vars": ["warn", { "vars": "local", "args": "after-used", "ignoreRestSiblings": false }]
+    "no-extra-semi": "off"
