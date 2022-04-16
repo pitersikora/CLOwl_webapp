@@ -17,3 +17,4 @@ rules:
   no-trailing-spaces: 2
   space-before-blocks: 2
   space-before-function-paren: 2
+  padded-blocks: [2, "never"]
