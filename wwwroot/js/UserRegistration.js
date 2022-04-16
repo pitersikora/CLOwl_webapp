@@ -46,14 +46,8 @@ $(function () {
                     CloseAlert("#alert_placeholder_register");
                 }
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+            error: displayAlert()
 
-                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
-
-                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
-
-            }
         });
     });
 
@@ -135,16 +129,20 @@ $(function () {
                 }
 
             },
-            error: function (xhr, ajaxOptions, thrownError) {
-                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
-
-                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
-
-                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
-            }
+            error: displayAlert()
 
         });
 
     }
 
 });
+
+function displayAlert() {
+    return function(xhr, ajaxOptions, thrownError) {
+        var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+
+        PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+
+        console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+    };
+}

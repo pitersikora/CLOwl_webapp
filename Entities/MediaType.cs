@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClowlWebApp.Entities
 {
-    public class MediaType:IPrimaryProperties
+    public class MediaType : IPrimaryProperties
     {
         public int Id { get; set; }
 
