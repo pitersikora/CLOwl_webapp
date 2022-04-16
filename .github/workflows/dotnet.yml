@@ -33,7 +33,7 @@ jobs:
           LINTER_RULES_PATH: /
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
-          FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib).*
+          FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib|.json).*
 
       - name: Test
         run: dotnet test --no-build --verbosity normal
