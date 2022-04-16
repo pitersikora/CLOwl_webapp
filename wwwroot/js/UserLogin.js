@@ -1,5 +1,4 @@
 $(function () {
-
   var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
 
   function onUserLoginClick () {
@@ -23,17 +22,16 @@ $(function () {
       success: function (data) {
         var parsed = $.parseHTML(data);
 
-        var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";
+        var hasErrors = $(parsed).find("input[name='LoginInValid']").val() === "true";
 
-        if (hasErrors == true) {
+        if (hasErrors === true) {
           $("#UserLoginModal").html(data);
           userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
           var form = $("#UserLoginForm");
           $(form).removeData("validator");
           $(form).removeData("unobtrusiveValidation");
           $.validator.unobtrusive.parse(form);
-        }
-        else {
+        } else {
           location.href = 'Home/Index';
         }
       },

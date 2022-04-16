@@ -1,5 +1,5 @@
 $(function () {
-  $("#UserRegistrationModal").on('hidden.bs.modal', function (e) {
+  $("#UserRegistrationModal").on('hidden.bs.modal', function () {
     $("#UserRegistrationModal input[name='CategoryId']").val('0');
   });
 
@@ -15,8 +15,7 @@ $(function () {
   function onAcceptUserAgreementClick () {
     if ($(this).is(":checked")) {
       $("#UserRegistrationModal button[name = 'register']").prop("disabled", false);
-    }
-    else {
+    } else {
       $("#UserRegistrationModal button[name = 'register']").prop("disabled", true);
     }
   }
@@ -29,10 +28,9 @@ $(function () {
       type: "GET",
       url: url,
       success: function (data) {
-        if (data == true) {
+        if (data === true) {
           PresentClosableBootstrapAlert("#alert_placeholder_register", "warning", "Invalid Email", "This email address has already been registered");
-        }
-        else {
+        } else {
           CloseAlert("#alert_placeholder_register");
         }
       },
@@ -48,8 +46,7 @@ $(function () {
     if (name.length > 0 && surname.length > 0) {
       if (pass.toLowerCase().includes(name.toLowerCase()) || pass.toLowerCase().includes(surname.toLowerCase())) {
         PresentClosableBootstrapAlert("#alert_placeholder_register", "warning", "Invalid Password", "Password cannot contain your name or surname.");
-      }
-      else {
+      } else {
         CloseAlert("#alert_placeholder_register");
       }
     }
@@ -57,7 +54,7 @@ $(function () {
 
   var registerUserButton = $("#UserRegistrationModal button[name = 'register']").click(onUserRegisterClick);
 
-  function onUserRegisterClick() {
+  function onUserRegisterClick () {
     var url = "UserAuth/RegisterUser";
     var antiForgeryToken = $("#UserRegistrationModal input[name='__RequestVerificationToken']").val();
     var email = $("#UserRegistrationModal input[name='Email']").val();
@@ -92,7 +89,7 @@ $(function () {
       data: user,
       success: function (data) {
         var parsed = $.parseHTML(data);
-        var hasErrors = $(parsed).find("input[name='RegistrationInValid']").val() == 'true';
+        var hasErrors = $(parsed).find("input[name='RegistrationInValid']").val() === 'true';
         if (hasErrors) {
           $("#UserRegistrationModal").html(data);
           var registerUserButton = $("#UserRegistrationModal button[name = 'register']").click(onUserRegisterClick);
@@ -100,8 +97,7 @@ $(function () {
           $("#UserRegistrationForm").removeData("validator");
           $("#UserRegistrationForm").removeData("unobtrusiveValidation");
           $.validator.unobtrusive.parse("#UserRegistrationForm");
-        }
-        else {
+        } else {
           location.href = '/Home/Index';
         }
       },
@@ -110,10 +106,10 @@ $(function () {
   }
 });
 
-function displayAlert() {
-  return function(xhr, ajaxOptions, thrownError) {
+function displayAlert () {
+  return function (xhr, ajaxOptions, thrownError) {
     var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
-      PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
-      console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+    PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+    console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
   };
 }

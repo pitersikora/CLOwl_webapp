@@ -1,5 +1,4 @@
 $(function () {
-
   $('.CheckboxCreatorAccount').click(function () {
     var checkboxObj = document.getElementById($(this).attr('id'));
     var email = document.getElementById($(this).attr('id').replace("checkbox", "userName")).innerText;
@@ -19,8 +18,7 @@ $(function () {
       success: function (data) {
         if (data) {
           PresentAutoCloseBootstrapAlert("#alert_placeholder_result", "success", "", "Role change was successful !");
-        }
-        else {
+        } else {
           PresentAutoCloseBootstrapAlert("#alert_placeholder_result", "danger", "Error!", "Role change was unsuccessful !");
           checkboxObj.checked = !checkboxObj.checked
         }
