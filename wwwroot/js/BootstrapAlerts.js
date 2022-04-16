@@ -1,4 +1,4 @@
-/* exported PresentClosableBootstrapAlert, PresentAutoCloseBootstrapAlert */
+/* exported PresentClosableBootstrapAlert, PresentAutoCloseBootstrapAlert, CloseAlert */
 function PresentClosableBootstrapAlert (placeHolderElemId, alertType, alertHeading, alertMessage) {
   if (alertType === '') {
     alertType = 'info'
