@@ -1,0 +1,8 @@
+---
+env:
+  "browser": true
+  "jquery": true
+  "es6": true
+rules:
+  # Override default settings
+  "semi": [2, "never"]
