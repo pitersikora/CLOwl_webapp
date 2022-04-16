@@ -22,6 +22,22 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         {
             _context = context;
         }
+        private async Task<IActionResult> StandardCRUDIndex(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
 
         // GET: Admin/CategoryItem
         // jako zmienna categoryId pobrana z widoku kategorii potrzebna do wykonania Linq
@@ -56,19 +72,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/CategoryItem/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var categoryItem = await _context.CategoryItem
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (categoryItem == null)
-            {
-                return NotFound();
-            }
-
-            return View(categoryItem);
+            return await StandardCRUDIndex(id);
         }
 
         // GET: Admin/CategoryItem/Create
@@ -170,19 +174,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/CategoryItem/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var categoryItem = await _context.CategoryItem
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (categoryItem == null)
-            {
-                return NotFound();
-            }
-
-            return View(categoryItem);
+            return await StandardCRUDIndex(id);
         }
 
         // POST: Admin/CategoryItem/Delete/5

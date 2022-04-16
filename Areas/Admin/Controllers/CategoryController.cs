@@ -22,14 +22,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Category
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Category.ToListAsync());
-        }
-
-        // GET: Admin/Category/Details/5
-        public async Task<IActionResult> Details(int? id)
+        private async Task<IActionResult> StandardCRUDIndex(int? id)
         {
             if (id == null)
             {
@@ -44,6 +37,18 @@ namespace ClowlWebApp.Areas.Admin.Controllers
             }
 
             return View(category);
+        }
+
+        // GET: Admin/Category
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Category.ToListAsync());
+        }
+
+        // GET: Admin/Category/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            return await StandardCRUDIndex(id);
         }
 
         // GET: Admin/Category/Create
@@ -71,17 +76,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/Category/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Category.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return View(category);
+            return await StandardCRUDIndex(id);
         }
 
         // POST: Admin/Category/Edit/5
@@ -122,19 +117,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/Category/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            return await StandardCRUDIndex(id);
         }
 
         // POST: Admin/Category/Delete/5

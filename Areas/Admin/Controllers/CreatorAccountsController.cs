@@ -41,8 +41,8 @@ namespace ClowlWebApp.Areas.Admin.Controllers
                                          where fullTable.NormalizedName != "ADMIN"
                                          select new UserRole
                                          {
-                                            UserName = userItem.UserName.ToString(),
-                                            Role = fullTable.NormalizedName ?? null
+                                             UserName = userItem.UserName.ToString(),
+                                             Role = fullTable.NormalizedName ?? null
                                          }).ToListAsync();
 
             ViewBag.UserList = list;

@@ -22,6 +22,23 @@ namespace ClowlWebApp.Areas.Admin.Controllers
             _context = context;
         }
 
+        private async Task<IActionResult> StandardCRUDIndex(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Category
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
+
         // GET: Admin/MediaType
         public async Task<IActionResult> Index()
         {
@@ -31,19 +48,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/MediaType/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var mediaType = await _context.MediaType
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (mediaType == null)
-            {
-                return NotFound();
-            }
-
-            return View(mediaType);
+            return await StandardCRUDIndex(id);
         }
 
         // GET: Admin/MediaType/Create
@@ -71,17 +76,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/MediaType/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var mediaType = await _context.MediaType.FindAsync(id);
-            if (mediaType == null)
-            {
-                return NotFound();
-            }
-            return View(mediaType);
+            return await StandardCRUDIndex(id);
         }
 
         // POST: Admin/MediaType/Edit/5
@@ -122,19 +117,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
         // GET: Admin/MediaType/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var mediaType = await _context.MediaType
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (mediaType == null)
-            {
-                return NotFound();
-            }
-
-            return View(mediaType);
+            return await StandardCRUDIndex(id);
         }
 
         // POST: Admin/MediaType/Delete/5
