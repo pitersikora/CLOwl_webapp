@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClowlWebApp", "Clowl_webapp\ClowlWebApp.csproj", "{B53284C9-F353-4C63-AFD1-A55E63ACFFE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClowlWebApp", "\Clowl_webapp\ClowlWebApp.csproj", "{B53284C9-F353-4C63-AFD1-A55E63ACFFE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLOwlUnitTests", "CLOwlUnitTests\CLOwlUnitTests.csproj", "{3A1AC134-279F-46FF-AFCC-E611ABE9FEEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLOwlUnitTests", "\CLOwlUnitTests\CLOwlUnitTests.csproj", "{3A1AC134-279F-46FF-AFCC-E611ABE9FEEF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B53284C9-F353-4C63-AFD1-A55E63ACFFE2} = {B53284C9-F353-4C63-AFD1-A55E63ACFFE2}
 	EndProjectSection
