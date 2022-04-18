@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app-${{github.run_number}}
+          name: .clowl-${{github.run_number}}
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
@@ -47,7 +47,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app-${{github.run_number}}
+          name: .clowl-${{github.run_number}}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
