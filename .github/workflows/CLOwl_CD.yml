@@ -28,26 +28,26 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp --version-suffix ${{github.run_number}}
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
+          name: .net-app-${{github.run_number}}
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: clowl_ci_cd
     needs: build-artifact
     environment:
-      name: 'Development'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: .net-app-${{github.run_number}}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
