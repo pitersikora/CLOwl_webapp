@@ -1,0 +1,59 @@
+---
+name: CLOwl_CD
+
+env:
+  AZURE_WEBAPP_NAME: clowl
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  DOTNET_VERSION: '5.0'
+
+on:
+  workflow_run:
+    workflows: ["CLOwl_CI"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  build-artifact:
+    runs-on: clowl_ci_cd
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp --version-suffix ${{github.run_number}}
+      
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .clowl-${{github.run_number}}
+          path: ${{env.DOTNET_ROOT}}/myapp
+
+  deploy:
+    runs-on: clowl_ci_cd
+    needs: build-artifact
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .clowl-${{github.run_number}}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
