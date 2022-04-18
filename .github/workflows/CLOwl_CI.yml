@@ -33,6 +33,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v4
         env:
+          GITHUB_TOKEN: ${{ secrets.SUPER_LINTER_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib|.json).*
