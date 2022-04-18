@@ -1,51 +1,21 @@
 ---
-name: CLOwl_CI_CD
+name: CLOwl_CD
+
+env:
+  AZURE_WEBAPP_NAME: clowl
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  DOTNET_VERSION: '5.0'
 
 on:
-  workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["CLOwl_CI"]
     branches: [main]
-  pull_request:
-    branches: [main]
+    types:
+      - completed
 
 jobs:
-  linter-unittest:
-
-    runs-on: self-hosted
-
-    steps:
-      - name: Clean Workspace
-        uses: AutoModality/action-clean@v1.1.0
-
-      - uses: actions/checkout@v3
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 5.0.x
-
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --no-restore
-
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.SUPER_LINTER_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib|.json).*
-          VALIDATE_JAVASCRIPT_STANDARD: false
-
-      - name: Test
-        run: dotnet test --no-build --verbosity normal
-        
   build-artifact:
     runs-on: clowl_ci_cd
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    needs: linter-unittest
 
     steps:
       - uses: actions/checkout@v3
@@ -69,7 +39,6 @@ jobs:
 
   deploy:
     runs-on: clowl_ci_cd
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: build-artifact
     environment:
       name: 'Production'

@@ -1,0 +1,43 @@
+---
+name: CLOwl_CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  linter-unittest:
+
+    runs-on: self-hosted
+
+    steps:
+      - name: Clean Workspace
+        uses: AutoModality/action-clean@v1.1.0
+
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.SUPER_LINTER_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_EXCLUDE: .*(/Data/Migrations/|/Properties/ServiceDependencies|Areas/Identity|wwwroot/fontawesome|wwwroot/Images|wwwroot/lib|.json).*
+          VALIDATE_JAVASCRIPT_STANDARD: false
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
