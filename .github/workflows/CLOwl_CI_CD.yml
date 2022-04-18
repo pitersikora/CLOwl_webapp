@@ -45,6 +45,7 @@ jobs:
   build-artifact:
     runs-on: clowl_ci_cd
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: linter-unittest
 
     steps:
       - uses: actions/checkout@v3
