@@ -16,6 +16,7 @@ on:
 jobs:
   build-artifact:
     runs-on: clowl_ci_cd
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -40,6 +41,7 @@ jobs:
   deploy:
     runs-on: clowl_ci_cd
     needs: build-artifact
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
