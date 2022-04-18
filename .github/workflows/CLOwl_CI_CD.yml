@@ -1,5 +1,5 @@
 ---
-name: CLOwl_CI
+name: CLOwl_CI_CD
 
 on:
   workflow_dispatch:
