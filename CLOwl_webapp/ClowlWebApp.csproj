@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-ClowlWebApp-3FE225E4-3CCE-467C-A8C2-007EA846BFCA</UserSecretsId>
+    <Version>$([System.DateTime]::Now.ToString("yyyy-MM-dd"))</Version>
   </PropertyGroup>
 
   <ItemGroup>
