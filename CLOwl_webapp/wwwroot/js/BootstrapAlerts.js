@@ -14,7 +14,7 @@ function PresentClosableBootstrapAlert (placeHolderElemId, alertType, alertHeadi
 }
 
 function PresentAutoCloseBootstrapAlert (placeHolderElemId, alertType, alertHeading, alertMessage) {
-  if (alertType === '') {
+  if (alertType == '') {
     alertType = 'info'
   }
   var alertHtml = '<div class="alert alert-' + alertType + ' fade show" role="alert">' +
