@@ -44,7 +44,7 @@ jobs:
         
   build-artifact:
     runs-on: clowl_ci_cd
-    if: ${{ github.event.pull_request.merged }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     steps:
       - uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
 
   deploy:
     runs-on: clowl_ci_cd
-    if: ${{ github.event.pull_request.merged }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: build-artifact
     environment:
       name: 'Production'
