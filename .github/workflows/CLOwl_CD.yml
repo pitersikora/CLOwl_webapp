@@ -11,6 +11,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+  workflow_run:
+    workflows: ["CLOwl_CI"]
+    types:
+      - completed
 
 jobs:
   build-artifact:
