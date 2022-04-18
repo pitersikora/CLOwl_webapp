@@ -17,7 +17,7 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Deploy
+name: CLOwl_CD
 
 env:
   AZURE_WEBAPP_NAME: clowl    # set this to the name of your Azure Web App
@@ -31,8 +31,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-artifact:
+    runs-on: clowl_ci_cd
 
     steps:
       - uses: actions/checkout@v3
@@ -63,8 +63,8 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
-    needs: build
+    runs-on: clowl_ci_cd
+    needs: build-artifact
     environment:
       name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
