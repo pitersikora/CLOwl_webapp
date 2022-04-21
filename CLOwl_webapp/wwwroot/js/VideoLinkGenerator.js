@@ -1,4 +1,8 @@
 $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
     $('.video-link').blur(function () {
         var linkObject = document.getElementById($(this).attr('id'));
 
