@@ -28,6 +28,23 @@ namespace ClowlWebApp.Controllers
                                          HTMLContent = item.HTMLContent
                                      }).FirstOrDefaultAsync();
 
+            var categoryId = await (from item in _context.CategoryItem
+                                    where item.Id == categoryItemId
+                                    select item.CategoryId).FirstOrDefaultAsync();
+
+            List<CategoryItem> categoryItems = await (from item in _context.CategoryItem
+                                                      where item.CategoryId == categoryId
+                                                      select new CategoryItem
+                                                      {
+                                                          Id = item.Id,
+                                                          Title = item.Title,
+                                                          Description = item.Description,
+                                                          DateTimeItemReleased = item.DateTimeItemReleased,
+                                                          MediaTypeId = item.MediaTypeId,
+                                                          CategoryId = categoryId
+                                                      }).ToListAsync();
+
+            ViewBag.categoryItems = categoryItems;
             return View(content);
         }
     }
