@@ -29,14 +29,14 @@ namespace ClowlWebApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var categoryItem = await _context.CategoryItem
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (categoryItem == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(categoryItem);
         }
 
         // GET: Admin/CategoryItem
