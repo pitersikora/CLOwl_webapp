@@ -25,14 +25,14 @@ $(function () {
       success: function (data) {
         linkObject.value = 'https://www.youtube.com/embed/' + ytID
         PresentAutoCloseBootstrapAlert("#alert_placeholder_result", "success", "Succesfully added video link",
-        data.items[0].snippet.title);
+          data.items[0].snippet.title);
       },
-        fail: function (xhr, ajaxOptions, thrownError) {
+      fail: function (xhr, ajaxOptions, thrownError) {
         var errorText = "Status: " + xhr.status + " - " + xhr.statusText + '\r\n' + 'Trying to embed link manually';
         PresentAutoCloseBootstrapAlert("#alert_placeholder_result", "danger", "Error!", errorText);
         console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
         linkObject.value = 'https://www.youtube.com/embed/' + ytID
-        }
+      }
     });
   });
 });
