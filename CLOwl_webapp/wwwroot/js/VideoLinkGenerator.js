@@ -7,8 +7,8 @@ $(function () {
         var linkObject = document.getElementById($(this).attr('id'));
 
         function getYouTubeVideoIdByUrl(url) {
-            const reg = /^(https?:)?(\/\/)?((www\.|m\.)?youtube(-nocookie)?\.com\/((watch)?\?(feature=\w*&)?vi?=|embed\/|vi?\/|e\/)|youtu.be\/)([\w\-]{10,20})/i
-            const match = url.match(reg);
+            var reg = /^(https?:)?(\/\/)?((www\.|m\.)?youtube(-nocookie)?\.com\/((watch)?\?(feature=\w*&)?vi?=|embed\/|vi?\/|e\/)|youtu.be\/)([\w\-]{10,20})/i
+            var match = url.match(reg);
             if (match) {
                 return match[9];
             } else {
