@@ -29,12 +29,12 @@ namespace ClowlWebApp.Controllers
                                      }).FirstOrDefaultAsync();
 
             var categoryId = await (from item in _context.CategoryItem
-                                       where item.Id == categoryItemId
-                                       select item.CategoryId).FirstOrDefaultAsync();
+                                    where item.Id == categoryItemId
+                                    select item.CategoryId).FirstOrDefaultAsync();
 
             List<CategoryItem> categoryItems = await (from item in _context.CategoryItem
                                                       where item.CategoryId == categoryId
-                                                      select new CategoryItem 
+                                                      select new CategoryItem
                                                       {
                                                           Id = item.Id,
                                                           Title = item.Title,
@@ -44,7 +44,7 @@ namespace ClowlWebApp.Controllers
                                                           CategoryId = categoryId
                                                       }).ToListAsync();
 
-            ViewBag.categoryItems= categoryItems;
+            ViewBag.categoryItems = categoryItems;
             return View(content);
         }
     }
