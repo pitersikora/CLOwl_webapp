@@ -29,7 +29,7 @@ namespace ClowlWebApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
+            var category = await _context.MediaType
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
