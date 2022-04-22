@@ -29,14 +29,14 @@ namespace ClowlWebApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.MediaType
+            var mediaType = await _context.MediaType
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (mediaType == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(mediaType);
         }
 
         // GET: Admin/MediaType
