@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-ClowlWebApp-3FE225E4-3CCE-467C-A8C2-007EA846BFCA</UserSecretsId>
-    <VersionPrefix>1.0.</VersionPrefix>
+    <VersionPrefix>"1.0."</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
