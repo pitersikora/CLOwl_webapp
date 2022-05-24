@@ -31,7 +31,7 @@ jobs:
         run: dotnet build --no-restore
 
       - name: Lint Code Base
-        uses: github/super-linter@v4
+        uses: github/super-linter@ae4e373c56efad95924d9cc6b89624fdb2333007
         env:
           GITHUB_TOKEN: ${{ secrets.SUPER_LINTER_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
