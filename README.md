@@ -20,7 +20,7 @@ It is written using ASP .Net 5 MVC along with MSSQL database. Feel free to downl
 - Open SQL Server Management Studio 
 	- on launch before connecting to DB server, copy the "Server name" value for later
 	- on SSMS Object Explorer - right mouse click on "Databases" folder and select "New Database"
-	- write down your DB name and press ok to create, copy the DB name for later.
+	- write down your DB name and press OK to create, copy the DB name for later.
 
 - On Visual Studio
 	- open `appsettings.json` file and edit the *`"DefaultConnection"`* string so that first two values are your Server name and Database name e.g.
